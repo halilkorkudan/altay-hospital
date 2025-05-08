@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kayıt Ol - ALTAY HASTANESİ</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #007BFF, #ffffff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .register-container {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .register-container h2 {
+      text-align: center;
+      color: #007BFF;
+      margin-bottom: 30px;
+    }
+
+    .register-container form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .register-container input[type="text"],
+    .register-container input[type="password"] {
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    .register-container input[type="submit"] {
+      padding: 12px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .register-container input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .register-container .footer-text {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .register-container .footer-text a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    .register-container .footer-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h2>Kayıt Ol</h2>
+    <form action="register.php" method="POST">
+      <input type="text" name="kullanici_adi" placeholder="Kullanıcı Adı" required />
+      <input type="password" name="sifre" placeholder="Şifre" required />
+      <input type="submit" value="Kayıt Ol" />
+    </form>
+    <div class="footer-text">
+      Zaten hesabınız var mı? <a href="login.html">Giriş Yap</a>
+    </div>
+  </div>
+</body>
+</html>
