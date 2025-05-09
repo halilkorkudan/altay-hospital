@@ -29,3 +29,6 @@ Web arayüzünden giriş yapabilir, hasta kayıtlarını görüntüleyebilir ve 
    docker-compose up --build
 3. Tarayıcıdan uygulamaya erişin:
    http://localhost:8080
+4. Docker containerlarını durdurmak için:
+   ```bash
+   docker-compose down
