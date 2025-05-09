@@ -4,9 +4,9 @@ session_start();
 $kullanici_adi = $_POST['kullanici_adi'] ?? '';
 $sifre = $_POST['sifre'] ?? '';
 
-$host = 'localhost';
-$db_user = 'halil';
-$db_pass = '';
+$host = 'db';
+$db_user = 'myuser';
+$db_pass = 'mypassword';
 $db_name = 'hasta_kayit';
 
 $conn = new mysqli($host, $db_user, $db_pass, $db_name);

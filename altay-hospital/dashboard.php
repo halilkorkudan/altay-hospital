@@ -3,9 +3,9 @@ session_start();
 
 require 'auth.php';
 
-$servername = "localhost";
-$username = "halil";  // kendi kullanıcı adın
-$password = "";  // kendi şifren
+$servername = "db";
+$username = "myuser";  // kendi kullanıcı adın
+$password = "mypassword";  // kendi şifren
 $dbname = "hasta_kayit";
 
 // Bağlantıyı oluştur
@@ -211,11 +211,6 @@ $result = $conn->query($sql);
     <a class="logout" href="logout.php">Çıkış Yap</a>
     <a class="login" href="backup.php">Backup Sayfası</a>
 </div>
-<script>
-window.addEventListener("beforeunload", function () {
-    navigator.sendBeacon("logout.php");
-});
-</script>
 
 </body>
 </html>

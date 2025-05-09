@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['backup'])) {
         $output = null;
         $return_var = null;
-        exec("sudo /usr/local/bin/backup.sh", $output, $return_var);
+        exec("/usr/local/bin/backup.sh", $output, $return_var);
 
         if ($return_var === 0) {
             $_SESSION['backup_message'] = "<p style='color:green;'>Backup başarıyla alındı.</p>";
@@ -41,7 +41,7 @@ if (file_exists($log_file)) {
 }
 
 // En son yedek dosyasını bul
-$backup_dir = "/var/www/html/altay/backups/";
+$backup_dir = "/var/www/html/backups/";
 $files = glob($backup_dir . "*.sql");
 $latest_file = '';
 
@@ -149,7 +149,7 @@ if (count($files) > 0) {
     <div class="download-link">
         <?php if ($latest_file): ?>
             <h3>En Son Yedek Dosyası</h3>
-            <a href="/altay/backups/<?php echo htmlspecialchars($latest_file); ?>" download>Yedeği İndir</a>
+            <a href="/backups/<?php echo htmlspecialchars($latest_file); ?>" download>Yedeği İndir</a>
         <?php else: ?>
             <p>Henüz bir yedek dosyası bulunamadı.</p>
         <?php endif; ?>
@@ -160,11 +160,6 @@ if (count($files) > 0) {
 
     <a class="logout" href="dashboard.php">Geri Dön</a>
 </div>
-<script>
-window.addEventListener("beforeunload", function () {
-    navigator.sendBeacon("logout.php");
-});
-</script>
 
 </body>
 </html>
