@@ -86,7 +86,9 @@
     <h2>Kayıt Ol</h2>
     <form action="register.php" method="POST">
       <input type="text" name="kullanici_adi" placeholder="Kullanıcı Adı" required />
-      <input type="password" name="sifre" placeholder="Şifre" required />
+      <input type="password" name="sifre" placeholder="Şifre" required
+       pattern="^(?=.*[A-Za-z])(?=.*[\W_]).{7,}$"
+       title="Şifreniz en az 7 karakter olmalı, en az bir harf ve bir özel karakter içermelidir." />
       <input type="submit" value="Kayıt Ol" />
     </form>
     <div class="footer-text">
