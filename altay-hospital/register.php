@@ -1,6 +1,14 @@
 <?php
 $kullanici_adi = $_POST['kullanici_adi'];
 $sifre = $_POST['sifre'];
+if (
+    strlen($sifre) < 7 ||
+    !preg_match('/[A-Za-z]/', $sifre) ||
+    !preg_match('/[\W_]/', $sifre)
+) {
+    echo "<script>alert('Şifre en az 7 karakterli olmalı ve en az bir harf ile bir özel karakter içermelidir.'); window.history.back();</script>";
+    exit();
+}
 
 
 $host = 'db';
@@ -74,23 +82,3 @@ if ($stmt->execute()) {
       </style>
       <script>
         setTimeout(function() {
-          window.location.href = "login.html";
-        }, 3000);
-      </script>
-    </head>
-    <body>
-      <div class="message-box">
-        <h2>Teşekkürler!</h2>
-        <p>Kayıt işleminiz başarıyla tamamlandı.<br>Giriş sayfasına yönlendiriliyorsunuz...</p>
-      </div>
-    </body>
-    </html>';
-} else {
-    echo "Hata oluştu: " . $stmt->error;
-}
-
-
-$stmt->close();
-$kontrol->close();
-$conn->close();
-?>
