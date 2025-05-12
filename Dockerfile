@@ -7,7 +7,8 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 RUN a2enmod rewrite
 
 # mysqldump için mysql-client
-RUN apt-get update && apt-get install -y default-mysql-client
+RUN apt-get update && apt-get install -y default-mysql-client \
+cron
 
 # Gerekli klasörleri oluştur
 RUN mkdir -p /var/backups /var/log /var/www/html/altay/backups
@@ -22,6 +23,9 @@ COPY backup.sh /usr/local/bin/backup.sh
 # Script çalıştırılabilir yap
 RUN chmod +x /usr/local/bin/backup.sh
 
+RUN echo "0 2 * * 0 root /usr/local/bin/backup.sh" >> /etc/crontab
+
 # Apache port
 EXPOSE 80
 
+CMD ["cron", "-f"]
