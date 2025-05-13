@@ -3,7 +3,20 @@ session_start();
 
 $kullanici_adi = $_POST['kullanici_adi'] ?? '';
 $sifre = $_POST['sifre'] ?? '';
+$recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
 
+$recaptcha_secret = '6LdNvTgrAAAAAHa11whdgTo4VA6EM6BsW3CYTeW-';
+
+// CAPTCHA doğrulama
+$verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$recaptcha_secret}&response={$recaptcha_response}");
+$responseData = json_decode($verify);
+
+if (!$responseData->success) {
+    mesajGoster("Güvenlik Hatası", "reCAPTCHA doğrulaması başarısız. Lütfen tekrar deneyin.", "#dc3545", "login.html");
+    exit;
+}
+
+// Veritabanı bağlantısı
 $host = 'db';
 $db_user = 'myuser';
 $db_pass = 'mypassword';
@@ -20,6 +33,7 @@ $stmt->bind_param("s", $kullanici_adi);
 $stmt->execute();
 $result = $stmt->get_result();
 
+// Mesaj fonksiyonu
 function mesajGoster($baslik, $mesaj, $renk, $yol) {
     echo <<<HTML
     <html>
@@ -68,13 +82,12 @@ if ($result->num_rows === 1) {
     $user = $result->fetch_assoc();
     if (password_verify($sifre, $user['password'])) {
         $_SESSION['username'] = $kullanici_adi;
-
         mesajGoster("Giriş Başarılı", "Hoş geldiniz, $kullanici_adi!", "#28a745", "dashboard.php");
     } else {
-        mesajGoster("Giriş Başarısız", "Lütfen tekrar deneyin.", "#dc3545", "login.html");
+        mesajGoster("Giriş Başarısız", "Şifre hatalı, lütfen tekrar deneyin.", "#dc3545", "login.html");
     }
 } else {
-    mesajGoster("Giriş Başarısız", "Lütfen tekrar deneyin.", "#dc3545", "login.html");
+    mesajGoster("Giriş Başarısız", "Kullanıcı bulunamadı.", "#dc3545", "login.html");
 }
 
 $stmt->close();
