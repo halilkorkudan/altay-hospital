@@ -28,4 +28,7 @@ RUN echo "0 2 * * 0 root /usr/local/bin/backup.sh" >> /etc/crontab
 # Apache port
 EXPOSE 80
 
-CMD ["cron", "-f"]
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
+CMD ["/start.sh"]
+

@@ -40,45 +40,57 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("ss", $kullanici_adi, $hashli_sifre);
 
 if ($stmt->execute()) {
-    
-    echo '
-    <!DOCTYPE html>
-    <html lang="tr">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>Kayıt Başarılı</title>
-      <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-          height: 100vh;
-          background: linear-gradient(135deg, #007BFF, #ffffff);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .message-box {
-          background-color: #ffffff;
-          border-radius: 10px;
-          padding: 40px 30px;
-          width: 100%;
-          max-width: 400px;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-          text-align: center;
-        }
-        .message-box h2 {
-          color: #007BFF;
-          margin-bottom: 20px;
-        }
-        .message-box p {
-          font-size: 16px;
-          color: #333;
-        }
-      </style>
-      <script>
-        setTimeout(function() {
+    echo <<<HTML
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kayıt Başarılı</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #007BFF, #ffffff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .message-box {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 40px 30px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+    .message-box h2 {
+      color: #007BFF;
+      margin-bottom: 20px;
+    }
+    .message-box p {
+      font-size: 16px;
+      color: #333;
+    }
+  </style>
+  <script>
+    setTimeout(function() {
+      window.location.href = "login.php";
+    }, 3000);
+  </script>
+</head>
+<body>
+  <div class="message-box">
+    <h2>Kayıt Başarılı!</h2>
+    <p>3 saniye içinde giriş sayfasına yönlendirileceksiniz.</p>
+  </div>
+</body>
+</html>
+HTML;
+}

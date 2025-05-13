@@ -21,7 +21,7 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 function mesajGoster($baslik, $mesaj, $renk, $yol) {
-    echo "
+    echo <<<HTML
     <html>
     <head>
     <meta charset='UTF-8'>
@@ -61,7 +61,7 @@ function mesajGoster($baslik, $mesaj, $renk, $yol) {
         </div>
     </body>
     </html>
-    ";
+    HTML;
 }
 
 if ($result->num_rows === 1) {
